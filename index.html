@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href = "css/bootstrap.css" rel= "stylesheet" type="text/css">
 	<link href="css/styles.css" rel="stylesheet" type="text/css">
 	<script src="js/jquery-1.11.1.js"></script>
 	<script src="js/scripts.js"></script>
@@ -8,22 +9,42 @@
 </head>
 <body>
 	<h1>Expense Tracker</h1>
-	<div id="container">
-		<form>
-			<input id="description1" type="text" placeholder="Description">
-			<input id="amount" type="number" placeholder="Amount">
-			<input id="quantity" type="number" placeholder="Quantity">
-			<button id="submitbtn" type="submit">Track!</button>
-		</form>
-		<div id="purchases">
-			<table id="table">
-				<tr>
-					<th>Description</th>
-					<th>Amount</th>
-					<th>Quantity</th>
-					<th>Total Cost</th>
-				</tr>
-			</table>
+	<div class="container">
+		<div class='col-md-4'>
+			<h2>Categories</h2>
+			<ul id="category-list"></ul>
+				<form id="category-form">
+					<div class="form-group">
+						<input id = "add-category" type="text" placeholder="Add a Category">
+					</div>
+					<button id="categorybtn" type="submit">Add!</button>
+				</form>
+		</div>
+		<div class='col-md-4'>
+			<form id = "purchases-form">
+				<div class='form-group'>
+					<input id="description1" type="text" placeholder="Description">
+				</div>
+				<div class='form-group'>
+					<input id="amount" type="number" placeholder="Amount">
+				</div>
+				<div class='form-group'>
+					<input id="quantity" type="number" placeholder="Quantity">
+				</div>
+				<button id="submitbtn" type="submit">Track!</button>
+			</form>
+		</div>
+		<div class='col-md-4'>
+			<div id="purchases">
+				<table id="table">
+					<tr class="tableheaders">
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Quantity</th>
+						<th>Total Cost</th>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

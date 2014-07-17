@@ -7,18 +7,49 @@ var Purchase = {
       }
     }
 
+var Category = {
+  initialize: function() {
+    this.totalPurchases = []
+  },
+  name: ""
+}
+
 $(document).ready(function(){
-  $("form").submit(function(event){
+  var currentCategory;
+  $("form#purchases-form").submit(function(event){
     event.preventDefault();
-      var newObject = Object.create(Purchase);
-        newObject.description1 = $("#description1").val();
-        newObject.amount= $("#amount").val();
-        newObject.quantity= $('#quantity').val();
+      var newPurchase = Object.create(Purchase);
+        newPurchase.description1 = $("#description1").val();
+        newPurchase.amount= $("#amount").val();
+        newPurchase.quantity= $('#quantity').val();
         $("#purchases").show();
-        $("#table").append("<tr><td>"+ newObject.description1 +"</td><td>" + newObject.amount + "</td><td>"
-          + newObject.quantity +"</td><td>" + newObject.totalCost() + "</td></tr>")
+        $("#table").append("<tr><td>"+ newPurchase.description1 +"</td><td>" + newPurchase.amount + "</td><td>"
+          + newPurchase.quantity +"</td><td>" + newPurchase.totalCost() + "</td></tr>")
+        currentCategory.totalPurchases.push(newPurchase);
+
       })
 
+  $("form#category-form").submit(function(event){
+    event.preventDefault();
+    var inputCategory = $("#add-category").val()
+    $("ul#category-list").append("<li>"+inputCategory+ "</li>");
+    var newCategory = Object.create(Category);
+    newCategory.initialize();
+    newCategory.name = inputCategory
+    $("li").last().click(function(){
+      $("#purchases").show();
+      $("td").empty();
+      currentCategory = newCategory;
+      $(this).addClass("blue");
+
+      currentCategory.totalPurchases.forEach(function(purchase){
+        $("#table").append("<tr><td>"+ purchase.description1 +"</td><td>" + purchase.amount + "</td><td>"
+          + purchase.quantity +"</td><td>" + purchase.totalCost() + "</td></tr>")
+      })
+
+    })
+
+  })
 
 
 })
