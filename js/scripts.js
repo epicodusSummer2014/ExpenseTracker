@@ -23,6 +23,7 @@ $(document).ready(function(){
         newPurchase.amount= $("#amount").val();
         newPurchase.quantity= $('#quantity').val();
         $("#purchases").show();
+        $("input").val("")
         $("#table").append("<tr><td>"+ newPurchase.description1 +"</td><td>" + newPurchase.amount + "</td><td>"
           + newPurchase.quantity +"</td><td>" + newPurchase.totalCost() + "</td></tr>")
         currentCategory.totalPurchases.push(newPurchase);
@@ -36,15 +37,16 @@ $(document).ready(function(){
     var newCategory = Object.create(Category);
     newCategory.initialize();
     newCategory.name = inputCategory
+    $("input").val("")
     $("li").last().click(function(){
       $("#purchases").show();
       $("td").empty();
       currentCategory = newCategory;
-      $(this).addClass("blue");
 
       currentCategory.totalPurchases.forEach(function(purchase){
         $("#table").append("<tr><td>"+ purchase.description1 +"</td><td>" + purchase.amount + "</td><td>"
           + purchase.quantity +"</td><td>" + purchase.totalCost() + "</td></tr>")
+
       })
 
     })
